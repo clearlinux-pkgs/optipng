@@ -1,0 +1,24 @@
+From add0bd12f45876516196ebec8e27207d5c6f123f Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Sun, 27 Jan 2019 00:06:39 -0800
+Subject: [PATCH] Remove exiting on unknown option
+
+---
+ configure | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/configure b/configure
+index b3d5480..50f7bd3 100755
+--- a/configure
++++ b/configure
+@@ -154,7 +154,6 @@ do
+     * )
+         echo "$0: error: unknown option: $arg"
+         echo "Type \"$0 -help\" for help"
+-        exit 64  # EX_USAGE
+         ;;
+     esac
+ done
+-- 
+2.20.1
+
