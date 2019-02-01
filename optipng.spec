@@ -4,9 +4,9 @@
 #
 Name     : optipng
 Version  : 0.7.7
-Release  : 1
-URL      : https://newcontinuum.dl.sourceforge.net/project/optipng/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
-Source0  : https://newcontinuum.dl.sourceforge.net/project/optipng/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
+Release  : 2
+URL      : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
+Source0  : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Summary  : zlib compression library
 Group    : Development/Tools
 License  : BSL-1.0 GPL-2.0 Libpng Zlib
@@ -59,7 +59,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1548576500
+export SOURCE_DATE_EPOCH=1549003979
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -71,7 +71,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1548576500
+export SOURCE_DATE_EPOCH=1549003979
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/optipng
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/optipng/LICENSE.txt
