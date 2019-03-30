@@ -4,7 +4,7 @@
 #
 Name     : optipng
 Version  : 0.7.7
-Release  : 2
+Release  : 3
 URL      : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Source0  : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Summary  : zlib compression library
@@ -14,6 +14,8 @@ Requires: optipng-bin = %{version}-%{release}
 Requires: optipng-license = %{version}-%{release}
 Requires: optipng-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
+BuildRequires : libpng-dev
+BuildRequires : zlib-dev
 Patch1: 0001-Remove-exiting-on-unknown-option.patch
 
 %description
@@ -28,7 +30,6 @@ rfc1952 (gzip format).
 Summary: bin components for the optipng package.
 Group: Binaries
 Requires: optipng-license = %{version}-%{release}
-Requires: optipng-man = %{version}-%{release}
 
 %description bin
 bin components for the optipng package.
@@ -59,8 +60,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549003979
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1553910547
+export LDFLAGS="${LDFLAGS} -fno-lto"
+%configure --disable-static --with-system-libs
 make  %{?_smp_mflags}
 
 %check
@@ -71,7 +73,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1549003979
+export SOURCE_DATE_EPOCH=1553910547
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/optipng
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/optipng/LICENSE.txt
