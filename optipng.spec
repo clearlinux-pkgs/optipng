@@ -4,7 +4,7 @@
 #
 Name     : optipng
 Version  : 0.7.7
-Release  : 3
+Release  : 4
 URL      : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Source0  : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Summary  : zlib compression library
