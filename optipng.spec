@@ -4,7 +4,7 @@
 #
 Name     : optipng
 Version  : 0.7.7
-Release  : 4
+Release  : 5
 URL      : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Source0  : https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.7/optipng-0.7.7.tar.gz
 Summary  : zlib compression library
@@ -53,34 +53,39 @@ man components for the optipng package.
 
 %prep
 %setup -q -n optipng-0.7.7
+cd %{_builddir}/optipng-0.7.7
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1553910547
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604605685
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --with-system-libs
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1553910547
+export SOURCE_DATE_EPOCH=1604605685
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/optipng
-cp LICENSE.txt %{buildroot}/usr/share/package-licenses/optipng/LICENSE.txt
-cp src/libpng/LICENSE %{buildroot}/usr/share/package-licenses/optipng/src_libpng_LICENSE
-cp src/libpng/contrib/gregbook/COPYING %{buildroot}/usr/share/package-licenses/optipng/src_libpng_contrib_gregbook_COPYING
-cp src/libpng/contrib/gregbook/LICENSE %{buildroot}/usr/share/package-licenses/optipng/src_libpng_contrib_gregbook_LICENSE
-cp src/zlib/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/optipng/src_zlib_contrib_dotzlib_LICENSE_1_0.txt
+cp %{_builddir}/optipng-0.7.7/LICENSE.txt %{buildroot}/usr/share/package-licenses/optipng/30bed5b09fb0180650189403e8233c19a5f369b8
+cp %{_builddir}/optipng-0.7.7/src/libpng/LICENSE %{buildroot}/usr/share/package-licenses/optipng/be927a27a8ce3da7db949fa682093a1f2437a04f
+cp %{_builddir}/optipng-0.7.7/src/libpng/contrib/gregbook/COPYING %{buildroot}/usr/share/package-licenses/optipng/80b6f4fcbc19d7431482cba012e86f587828c1ba
+cp %{_builddir}/optipng-0.7.7/src/libpng/contrib/gregbook/LICENSE %{buildroot}/usr/share/package-licenses/optipng/aa4b9207aaff26bc16c562d6cd766a9eed49af1e
+cp %{_builddir}/optipng-0.7.7/src/zlib/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/optipng/892b34f7865d90a6f949f50d95e49625a10bc7f0
 %make_install
 
 %files
@@ -92,11 +97,11 @@ cp src/zlib/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/package-licen
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/optipng/LICENSE.txt
-/usr/share/package-licenses/optipng/src_libpng_LICENSE
-/usr/share/package-licenses/optipng/src_libpng_contrib_gregbook_COPYING
-/usr/share/package-licenses/optipng/src_libpng_contrib_gregbook_LICENSE
-/usr/share/package-licenses/optipng/src_zlib_contrib_dotzlib_LICENSE_1_0.txt
+/usr/share/package-licenses/optipng/30bed5b09fb0180650189403e8233c19a5f369b8
+/usr/share/package-licenses/optipng/80b6f4fcbc19d7431482cba012e86f587828c1ba
+/usr/share/package-licenses/optipng/892b34f7865d90a6f949f50d95e49625a10bc7f0
+/usr/share/package-licenses/optipng/aa4b9207aaff26bc16c562d6cd766a9eed49af1e
+/usr/share/package-licenses/optipng/be927a27a8ce3da7db949fa682093a1f2437a04f
 
 %files man
 %defattr(0644,root,root,0755)
